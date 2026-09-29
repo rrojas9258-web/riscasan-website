@@ -49,6 +49,8 @@
     .mobile-toggle{display:none}
     @media(max-width:980px){nav{display:none}.mobile-toggle{display:inline-flex}.hero-grid,.discover-grid{grid-template-columns:1fr}.visual{min-height:420px}.cards{grid-template-columns:repeat(3,1fr)}.service-grid{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:640px){.wrap{width:min(100% - 24px,var(--max))}.nav{height:66px}.brand span{font-size:14px}.actions .btn-dark{display:none}.hero-grid{padding-top:58px}.hero h1{font-size:56px}.tagline{font-size:22px}.stats{grid-template-columns:1fr 1fr}.visual{grid-template-columns:1fr 1fr;min-height:350px}.artist-shot:nth-child(1){min-height:350px}.artist-shot:nth-child(2),.artist-shot:nth-child(3){min-height:168px}.section-head{align-items:flex-start;flex-direction:column}.section-head h2{font-size:30px}.cards{grid-template-columns:1fr 1fr}.triple,.service-grid{grid-template-columns:1fr}.community h2{font-size:30px}.footer{align-items:flex-start;flex-direction:column}}
+  
+    .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(0,0,0,.74);padding:18px}.modal.open{display:grid}.modal-card{width:min(720px,100%);max-height:92vh;overflow:auto;background:#07111b;border:1px solid #24445d;border-radius:24px;padding:26px;box-shadow:0 28px 80px rgba(0,0,0,.55)}.modal-head{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.modal-head h2{margin:0}.close{background:transparent;border:1px solid #29455a;color:white;border-radius:999px;width:40px;height:40px;cursor:pointer}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#b8c5d0;font-weight:700}.field input,.field textarea,.field select{width:100%;background:#020a11;color:white;border:1px solid #234158;border-radius:13px;padding:12px 13px}.field textarea{min-height:110px;resize:vertical}.notice{display:none;margin:12px 0;padding:11px 13px;border-radius:12px;background:#102236;color:#d8e6f2}.notice.show{display:block}.account{display:none;padding:10px 14px;border:1px solid #21435e;border-radius:999px;color:#d7e7f5;font-size:13px}.account.show{display:inline-flex}.dashboard{display:none;background:#05101a;border-top:1px solid #173147}.dashboard.show{display:block}.dash-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}.dash-card{background:#091722;border:1px solid #19364b;border-radius:20px;padding:22px}.submission-list{display:grid;gap:10px;margin-top:14px}.submission-item{padding:12px;border:1px solid #1b3a51;border-radius:13px;background:#07121c}.status{font-size:11px;color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.08em}@media(max-width:640px){.form-grid,.dash-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -59,7 +61,7 @@
       <a href="#home">Home</a><a href="#artists">Artists</a><a href="#music">Music</a><a href="#discover">Discover</a>
       <a href="#submit">Submit Music</a><a href="#join">Join</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
-    <div class="actions"><a class="btn btn-dark" href="#join">Login</a><a class="btn btn-gold" href="#join">Sign Up</a><a class="btn btn-dark mobile-toggle" href="#artists">Menu</a></div>
+    <div class="actions"><span id="accountBadge" class="account"></span><button id="loginBtn" class="btn btn-dark" type="button">Login</button><button id="signupBtn" class="btn btn-gold" type="button">Sign Up</button><button id="logoutBtn" class="btn btn-dark" type="button" style="display:none">Log Out</button><a class="btn btn-dark mobile-toggle" href="#artists">Menu</a></div>
   </div>
 </header>
 
@@ -111,8 +113,8 @@
 
 <section id="submit">
   <div class="wrap triple">
-    <article class="feature" id="join"><div class="eyebrow">For Artists</div><h3>Your music deserves a global platform.</h3><p>Create your artist profile, showcase your work, submit releases, manage your music information, and connect with future opportunities through Riscasan Records.</p><a class="btn btn-gold" href="#contact">Join Riscasan Records →</a></article>
-    <article class="feature"><div class="eyebrow">Submit Your Music</div><h3>Already creating?</h3><p>Submit your song, cover artwork, credits, collaborators, language, genre, country, and release information directly through the Riscasan Records platform.</p><a class="btn btn-dark" href="#contact">Submit a Release →</a></article>
+    <article class="feature" id="join"><div class="eyebrow">For Artists</div><h3>Your music deserves a global platform.</h3><p>Create your artist profile, showcase your work, submit releases, manage your music information, and connect with future opportunities through Riscasan Records.</p><button class="btn btn-gold" type="button" data-open="signupModal">Join Riscasan Records →</button></article>
+    <article class="feature"><div class="eyebrow">Submit Your Music</div><h3>Already creating?</h3><p>Submit your song, cover artwork, credits, collaborators, language, genre, country, and release information directly through the Riscasan Records platform.</p><button class="btn btn-dark" type="button" id="submitReleaseBtn">Submit a Release →</button></article>
     <article class="feature" id="about"><div class="eyebrow">Built for Every Artist</div><h3>Your sound belongs somewhere.</h3><p>No matter where you are from, what language you speak, or what kind of music you create, Riscasan Records is building an ecosystem designed to give artists visibility, structure, resources, and room to grow.</p></article>
   </div>
 </section>
@@ -127,9 +129,69 @@
 </section>
 
 <section class="community" id="contact">
-  <div class="wrap"><h2>Join the Global Riscasan Records Community</h2><p>Artists. Producers. Songwriters. Musicians. Arrangers. Creators. One platform connecting talent across borders.</p><a class="btn btn-gold" href="mailto:Contact@riscasan.com">Create Artist Account →</a></div>
+  <div class="wrap"><h2>Join the Global Riscasan Records Community</h2><p>Artists. Producers. Songwriters. Musicians. Arrangers. Creators. One platform connecting talent across borders.</p><button class="btn btn-gold" type="button" data-open="signupModal">Create Artist Account →</button></div>
+</section>
+
+<section id="artistDashboard" class="dashboard">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Artist Dashboard</div><h2>Your Riscasan Records Profile</h2><div class="underline"></div></div><p>Manage your public artist identity and your music submissions.</p></div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <form id="profileForm" class="form-grid">
+          <div class="field full"><label>Stage / Artist Name</label><input name="stage_name" required></div>
+          <div class="field"><label>Country</label><input name="country"></div><div class="field"><label>City</label><input name="city"></div>
+          <div class="field full"><label>Genres (comma separated)</label><input name="genres" placeholder="Pop, R&B, Afrobeat"></div>
+          <div class="field full"><label>Languages (comma separated)</label><input name="languages" placeholder="English, Spanish, French"></div>
+          <div class="field full"><label>Bio</label><textarea name="bio"></textarea></div>
+          <div class="field"><label>Instagram</label><input name="instagram_url" type="url"></div><div class="field"><label>YouTube</label><input name="youtube_url" type="url"></div>
+          <div class="field full"><label>Profile Photo</label><input name="avatar" type="file" accept="image/jpeg,image/png,image/webp"></div>
+          <div class="field full"><label><input name="is_public" type="checkbox"> Make my artist profile public</label></div>
+          <div class="field full"><button class="btn btn-gold" type="submit">Save Artist Profile</button></div>
+        </form>
+        <div id="profileNotice" class="notice"></div>
+      </div>
+      <div class="dash-card">
+        <div class="eyebrow">My Submissions</div>
+        <h3 style="font-size:24px;margin:8px 0">Music sent to Riscasan Records</h3>
+        <button class="btn btn-dark" id="dashboardSubmitBtn" type="button">+ Submit New Music</button>
+        <div id="submissionList" class="submission-list"></div>
+      </div>
+    </div>
+  </div>
 </section>
 </main>
+
+<div id="loginModal" class="modal" aria-hidden="true"><div class="modal-card">
+  <div class="modal-head"><h2>Artist Login</h2><button class="close" data-close type="button">×</button></div>
+  <form id="loginForm" class="form-grid">
+    <div class="field full"><label>Email</label><input name="email" type="email" required></div>
+    <div class="field full"><label>Password</label><input name="password" type="password" minlength="8" required></div>
+    <div class="field full"><button class="btn btn-gold" type="submit">Log In</button></div>
+  </form><div id="loginNotice" class="notice"></div>
+</div></div>
+
+<div id="signupModal" class="modal" aria-hidden="true"><div class="modal-card">
+  <div class="modal-head"><h2>Create Artist Account</h2><button class="close" data-close type="button">×</button></div>
+  <form id="signupForm" class="form-grid">
+    <div class="field full"><label>Artist / Stage Name</label><input name="stage_name" required></div>
+    <div class="field full"><label>Email</label><input name="email" type="email" required></div>
+    <div class="field full"><label>Password</label><input name="password" type="password" minlength="8" required></div>
+    <div class="field full"><button class="btn btn-gold" type="submit">Create Account</button></div>
+  </form><div id="signupNotice" class="notice"></div>
+</div></div>
+
+<div id="submissionModal" class="modal" aria-hidden="true"><div class="modal-card">
+  <div class="modal-head"><h2>Submit Your Music</h2><button class="close" data-close type="button">×</button></div>
+  <form id="submissionForm" class="form-grid">
+    <div class="field"><label>Song / Project Title</label><input name="title" required></div><div class="field"><label>Artist Name</label><input name="artist_name" required></div>
+    <div class="field"><label>Release Type</label><select name="release_type"><option value="single">Single</option><option value="ep">EP</option><option value="album">Album</option><option value="video">Video</option><option value="other">Other</option></select></div>
+    <div class="field"><label>Genre</label><input name="genre"></div><div class="field"><label>Language</label><input name="language"></div><div class="field"><label>Country</label><input name="country"></div>
+    <div class="field full"><label>Songwriters</label><input name="songwriters"></div><div class="field full"><label>Producers</label><input name="producers"></div>
+    <div class="field"><label>Cover Art</label><input name="cover" type="file" accept="image/jpeg,image/png,image/webp"></div><div class="field"><label>Audio File</label><input name="audio" type="file" accept="audio/mpeg,audio/wav,audio/mp4"></div>
+    <div class="field full"><label>Notes</label><textarea name="notes"></textarea></div>
+    <div class="field full"><button class="btn btn-gold" type="submit">Send to Riscasan Records</button></div>
+  </form><div id="submissionNotice" class="notice"></div>
+</div></div>
 
 <footer>
   <div class="wrap footer">
@@ -138,5 +200,68 @@
     <div>© 2026 Riscasan Records. A Riscasan company.</div>
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://vnhwnirmxywerzajwljr.supabase.co';
+const SUPABASE_KEY='sb_publishable_GHX5THyfqH38a0M551sr1g_X_wbkehh';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+let currentUser=null;
+const q=s=>document.querySelector(s);
+const notice=(id,msg)=>{const el=q(id);el.textContent=msg;el.classList.add('show')};
+const openModal=id=>{q('#'+id).classList.add('open');q('#'+id).setAttribute('aria-hidden','false')};
+const closeModals=()=>document.querySelectorAll('.modal.open').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openModal(b.dataset.open));
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModals);
+q('#loginBtn').onclick=()=>openModal('loginModal'); q('#signupBtn').onclick=()=>openModal('signupModal');
+q('#submitReleaseBtn').onclick=()=>currentUser?openModal('submissionModal'):openModal('loginModal');
+q('#dashboardSubmitBtn').onclick=()=>openModal('submissionModal');
+q('#logoutBtn').onclick=async()=>{await sb.auth.signOut();location.reload()};
+
+async function refreshUI(){
+ const {data:{user}}=await sb.auth.getUser(); currentUser=user||null;
+ q('#loginBtn').style.display=currentUser?'none':'inline-flex'; q('#signupBtn').style.display=currentUser?'none':'inline-flex'; q('#logoutBtn').style.display=currentUser?'inline-flex':'none';
+ q('#artistDashboard').classList.toggle('show',!!currentUser);
+ q('#accountBadge').classList.toggle('show',!!currentUser); q('#accountBadge').textContent=currentUser?currentUser.email:'';
+ if(currentUser){await loadProfile();await loadSubmissions();}
+}
+q('#signupForm').onsubmit=async e=>{
+ e.preventDefault(); const fd=new FormData(e.target);
+ const {data,error}=await sb.auth.signUp({email:fd.get('email'),password:fd.get('password'),options:{data:{stage_name:fd.get('stage_name')},emailRedirectTo:location.origin+location.pathname}});
+ if(error)return notice('#signupNotice',error.message);
+ if(data.user && data.session){await sb.from('records_artist_profiles').upsert({user_id:data.user.id,stage_name:fd.get('stage_name')});}
+ notice('#signupNotice',data.session?'Account created. Welcome to Riscasan Records.':'Account created. Check your email to confirm your account.');
+ if(data.session){setTimeout(()=>{closeModals();refreshUI()},700);}
+};
+q('#loginForm').onsubmit=async e=>{
+ e.preventDefault(); const fd=new FormData(e.target); const {error}=await sb.auth.signInWithPassword({email:fd.get('email'),password:fd.get('password')});
+ if(error)return notice('#loginNotice',error.message); closeModals(); await refreshUI();
+};
+async function loadProfile(){
+ const {data}=await sb.from('records_artist_profiles').select('*').eq('user_id',currentUser.id).maybeSingle();
+ if(!data){const stage=currentUser.user_metadata?.stage_name||''; if(stage){await sb.from('records_artist_profiles').insert({user_id:currentUser.id,stage_name:stage});return loadProfile();}return;}
+ const f=q('#profileForm'); ['stage_name','country','city','bio','instagram_url','youtube_url'].forEach(k=>{if(f.elements[k])f.elements[k].value=data[k]||''});
+ f.elements.genres.value=(data.genres||[]).join(', '); f.elements.languages.value=(data.languages||[]).join(', '); f.elements.is_public.checked=!!data.is_public;
+}
+q('#profileForm').onsubmit=async e=>{
+ e.preventDefault(); const fd=new FormData(e.target); let avatar_path=null; const file=fd.get('avatar');
+ if(file&&file.size){const ext=file.name.split('.').pop();avatar_path=currentUser.id+'/avatar-'+Date.now()+'.'+ext;const {error}=await sb.storage.from('records-avatars').upload(avatar_path,file,{upsert:false});if(error)return notice('#profileNotice',error.message);}
+ const payload={user_id:currentUser.id,stage_name:fd.get('stage_name'),country:fd.get('country')||null,city:fd.get('city')||null,bio:fd.get('bio')||null,instagram_url:fd.get('instagram_url')||null,youtube_url:fd.get('youtube_url')||null,genres:String(fd.get('genres')||'').split(',').map(x=>x.trim()).filter(Boolean),languages:String(fd.get('languages')||'').split(',').map(x=>x.trim()).filter(Boolean),is_public:fd.get('is_public')==='on',updated_at:new Date().toISOString()};
+ if(avatar_path)payload.avatar_path=avatar_path; const {error}=await sb.from('records_artist_profiles').upsert(payload); notice('#profileNotice',error?error.message:'Artist profile saved successfully.');
+};
+q('#submissionForm').onsubmit=async e=>{
+ e.preventDefault(); if(!currentUser)return openModal('loginModal'); const fd=new FormData(e.target); let cover_path=null,audio_path=null;
+ for(const [field,bucketKey] of [['cover','cover_path'],['audio','audio_path']]){const file=fd.get(field);if(file&&file.size){const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');const path=currentUser.id+'/'+Date.now()+'-'+safe;const {error}=await sb.storage.from('records-submissions').upload(path,file,{upsert:false});if(error)return notice('#submissionNotice',error.message);if(bucketKey==='cover_path')cover_path=path;else audio_path=path;}}
+ const payload={user_id:currentUser.id,title:fd.get('title'),artist_name:fd.get('artist_name'),release_type:fd.get('release_type'),genre:fd.get('genre')||null,language:fd.get('language')||null,country:fd.get('country')||null,songwriters:fd.get('songwriters')||null,producers:fd.get('producers')||null,cover_path,audio_path,notes:fd.get('notes')||null,status:'submitted'};
+ const {error}=await sb.from('records_music_submissions').insert(payload); if(error)return notice('#submissionNotice',error.message); notice('#submissionNotice','Music submitted successfully. Riscasan Records received it.');e.target.reset();await loadSubmissions();setTimeout(closeModals,1000);
+};
+async function loadSubmissions(){
+ const {data,error}=await sb.from('records_music_submissions').select('id,title,artist_name,release_type,status,created_at').order('created_at',{ascending:false});
+ const el=q('#submissionList'); if(error){el.innerHTML='<div class="meta">'+error.message+'</div>';return}
+ el.innerHTML=(data||[]).length?(data||[]).map(x=>'<div class="submission-item"><b>'+escapeHtml(x.title)+'</b><div class="meta">'+escapeHtml(x.artist_name)+' • '+escapeHtml(x.release_type)+'</div><div class="status">'+escapeHtml(x.status)+'</div></div>').join(''):'<div class="meta">No submissions yet.</div>';
+}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+sb.auth.onAuthStateChange(()=>setTimeout(refreshUI,0)); refreshUI();
+</script>
 </body>
 </html>
