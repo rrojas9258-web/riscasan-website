@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Riscasan Records — One World. Every Sound.</title>
+  <meta name="description" content="Riscasan Records is a global music platform for artists, releases, discovery, and opportunity." />
+  <style>
+    :root{
+      --bg:#02070c;--panel:#07111b;--panel2:#0b1824;--text:#f7f9fc;--muted:#aeb9c6;
+      --gold:#f7b84b;--blue:#148bff;--line:#193247;--card:#0a1520;--max:1240px;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 36px));margin:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(2,7,12,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{height:74px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.12em}.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#fff 42%,#0b1320 43%,#0b1320 62%,var(--gold) 63%);box-shadow:0 0 28px rgba(247,184,75,.18)}.brand small{display:block;font-size:10px;letter-spacing:.42em;color:#c8d0da}
+    nav{display:flex;gap:22px;align-items:center;margin-left:auto}nav a{font-size:14px;color:#e6ebf1}nav a:hover{color:var(--gold)}
+    .actions{display:flex;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border-radius:999px;border:1px solid var(--line);font-weight:800;font-size:14px;transition:.2s}.btn:hover{transform:translateY(-1px)}.btn-gold{background:var(--gold);color:#081018;border-color:var(--gold)}.btn-dark{background:rgba(0,0,0,.25)}
+    .hero{min-height:650px;position:relative;overflow:hidden;border-bottom:1px solid #112536;background:
+      radial-gradient(circle at 75% 40%,rgba(20,139,255,.32),transparent 34%),
+      radial-gradient(circle at 65% 82%,rgba(247,184,75,.13),transparent 28%),
+      linear-gradient(90deg,#02070c 0%,#06101a 48%,#07192b 100%)}
+    .hero:after{content:"";position:absolute;inset:auto -4% -42% 45%;height:520px;border-radius:50%;background:
+      radial-gradient(circle at 50% 45%,transparent 0 44%,rgba(255,255,255,.08) 45% 45.5%,transparent 46%),
+      radial-gradient(circle at 50% 50%,rgba(11,95,173,.7),rgba(2,16,32,.3) 58%,transparent 59%);
+      border:1px solid rgba(68,168,255,.28);box-shadow:0 0 80px rgba(20,139,255,.25);transform:rotate(-7deg)}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.03fr .97fr;gap:44px;padding:92px 0 70px;align-items:center}
+    .eyebrow{color:var(--gold);font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:13px}.hero h1{font-size:clamp(52px,7vw,96px);line-height:.84;margin:16px 0 12px;letter-spacing:-.055em}.hero h1 span{display:block;font-size:.42em;letter-spacing:.34em;margin-top:16px}.tagline{font-size:26px;color:var(--gold);font-weight:900;margin:28px 0 14px}.lede{font-size:18px;line-height:1.7;color:#c4ced8;max-width:650px}.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:40px;border:1px solid #163047;border-radius:18px;overflow:hidden;background:#163047}.stat{background:rgba(3,10,17,.9);padding:18px}.stat b{display:block;font-size:24px}.stat span{font-size:12px;color:#aab8c7}
+    .visual{min-height:520px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:center;position:relative}
+    .artist-shot{border-radius:24px;overflow:hidden;min-height:230px;background-size:cover;background-position:center;box-shadow:0 14px 50px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08)}
+    .artist-shot:nth-child(1){grid-row:span 2;min-height:480px;background-image:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85)),url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85')}
+    .artist-shot:nth-child(2){background-image:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.86)),url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85')}
+    .artist-shot:nth-child(3){background-image:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.86)),url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85')}
+    .artist-shot{display:flex;align-items:flex-end;padding:20px}.artist-shot b{font-size:18px}.artist-shot span{display:block;color:#c6d0db;font-size:12px;margin-top:3px}
+    section{padding:72px 0}.section-head{display:flex;gap:20px;align-items:end;justify-content:space-between;margin-bottom:26px}.section-head h2{font-size:38px;margin:0;letter-spacing:-.035em}.section-head p{margin:0;color:var(--muted);max-width:620px}.underline{width:38px;height:4px;background:var(--gold);border-radius:99px;margin-top:10px}
+    .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.card{background:var(--card);border:1px solid #142a3a;border-radius:18px;overflow:hidden;transition:.22s}.card:hover{transform:translateY(-4px);border-color:#28506c}.thumb{aspect-ratio:4/5;background-size:cover;background-position:center}.card-body{padding:14px}.card b{font-size:15px}.meta{font-size:12px;color:#93a4b3;margin-top:5px}
+    .discover{background:linear-gradient(120deg,#06101a,#08203a);border-top:1px solid #14324a;border-bottom:1px solid #14324a}.discover-grid{display:grid;grid-template-columns:1fr .9fr;gap:44px;align-items:center}.map{min-height:350px;border-radius:28px;border:1px solid #254a68;background:
+      radial-gradient(circle at 25% 40%,rgba(20,139,255,.3),transparent 14%),
+      radial-gradient(circle at 67% 30%,rgba(247,184,75,.22),transparent 12%),
+      linear-gradient(135deg,rgba(2,8,14,.6),rgba(5,31,57,.86));position:relative;overflow:hidden}.map:before{content:"WORLD";position:absolute;font-size:92px;font-weight:950;letter-spacing:.12em;color:rgba(255,255,255,.045);inset:0;display:grid;place-items:center}.map:after{content:"Artists • Countries • Languages • Genres";position:absolute;bottom:24px;left:24px;color:#cce4f8;font-weight:700}
+    .pills{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.pill{padding:12px 16px;border:1px solid #2a506d;border-radius:14px;background:#081522}
+    .triple{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature{padding:26px;border:1px solid #173247;background:linear-gradient(150deg,#08131d,#0b1a27);border-radius:22px;min-height:250px}.feature h3{font-size:23px;margin:0 0 12px}.feature p{color:#aebdca;line-height:1.65}
+    .services{background:#f5f7f9;color:#0a1830}.service-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.service{background:white;border:1px solid #e1e7ec;border-radius:16px;padding:20px;text-align:center}.service .icon{font-size:26px}.service b{display:block;margin-top:10px}
+    .community{padding:58px 0;background:
+      linear-gradient(90deg,rgba(2,8,14,.93),rgba(3,18,33,.75)),
+      url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=85') center/cover}.community .wrap{text-align:center}.community h2{font-size:38px;margin:0 0 10px}.community p{color:#d3dce5}
+    footer{padding:34px 0;border-top:1px solid #183044}.footer{display:flex;gap:24px;align-items:center;justify-content:space-between;color:#8fa0af;font-size:13px}.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+    .mobile-toggle{display:none}
+    @media(max-width:980px){nav{display:none}.mobile-toggle{display:inline-flex}.hero-grid,.discover-grid{grid-template-columns:1fr}.visual{min-height:420px}.cards{grid-template-columns:repeat(3,1fr)}.service-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:640px){.wrap{width:min(100% - 24px,var(--max))}.nav{height:66px}.brand span{font-size:14px}.actions .btn-dark{display:none}.hero-grid{padding-top:58px}.hero h1{font-size:56px}.tagline{font-size:22px}.stats{grid-template-columns:1fr 1fr}.visual{grid-template-columns:1fr 1fr;min-height:350px}.artist-shot:nth-child(1){min-height:350px}.artist-shot:nth-child(2),.artist-shot:nth-child(3){min-height:168px}.section-head{align-items:flex-start;flex-direction:column}.section-head h2{font-size:30px}.cards{grid-template-columns:1fr 1fr}.triple,.service-grid{grid-template-columns:1fr}.community h2{font-size:30px}.footer{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home"><span class="logo" aria-hidden="true"></span><span>RISCASAN<small>RECORDS</small></span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#home">Home</a><a href="#artists">Artists</a><a href="#music">Music</a><a href="#discover">Discover</a>
+      <a href="#submit">Submit Music</a><a href="#join">Join</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="actions"><a class="btn btn-dark" href="#join">Login</a><a class="btn btn-gold" href="#join">Sign Up</a><a class="btn btn-dark mobile-toggle" href="#artists">Menu</a></div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Global music. Global opportunity.</div>
+      <h1>RISCASAN <span>RECORDS</span></h1>
+      <div class="tagline">One World. Every Sound.</div>
+      <p class="lede">A global home for artists, music, creativity, and opportunity. Riscasan Records connects artists from every country, every language, and every genre with a platform built to help them be discovered, grow, and share their work with the world.</p>
+      <div class="hero-cta"><a class="btn btn-gold" href="#artists">Discover Artists →</a><a class="btn btn-dark" href="#submit">Submit Your Music →</a></div>
+      <div class="stats">
+        <div class="stat"><b>Global</b><span>Artists</span></div><div class="stat"><b>Every</b><span>Country</span></div><div class="stat"><b>All</b><span>Genres</span></div><div class="stat"><b>One</b><span>Community</span></div>
+      </div>
+    </div>
+    <div class="visual" aria-label="Global artist showcase">
+      <div class="artist-shot"><div><b>New voices. Global stage.</b><span>Artists from everywhere belong here.</span></div></div>
+      <div class="artist-shot"><div><b>Creators</b><span>Music without borders.</span></div></div>
+      <div class="artist-shot"><div><b>Discovery</b><span>Find your next favorite sound.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="artists">
+  <div class="wrap">
+    <div class="section-head"><div><h2>Featured Artists</h2><div class="underline"></div></div><p>Meet emerging and established artists from around the world. Explore their music, stories, cultures, and creative journeys.</p></div>
+    <div class="cards">
+      <article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Amara</b><div class="meta">USA<br>R&B • Soul • Pop</div></div></article><article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Diego Santos</b><div class="meta">Colombia<br>Latin • Urban</div></div></article><article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Zuri</b><div class="meta">Nigeria<br>Afrobeat • Pop</div></div></article><article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Kenji</b><div class="meta">Japan<br>Pop • R&B</div></div></article><article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Léa Moreau</b><div class="meta">France<br>Electronic • Pop</div></div></article><article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Daniel K.</b><div class="meta">Haiti<br>World • Fusion</div></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="music" style="padding-top:10px">
+  <div class="wrap">
+    <div class="section-head"><div><h2>New Releases</h2><div class="underline"></div></div><p>Discover the latest singles, albums, videos, and creative projects from the Riscasan Records community.</p></div>
+    <div class="cards">
+      <article class="card"><div class="thumb" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Higher</b><div class="meta">Amara • New release</div></div></article><article class="card"><div class="thumb" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Sin Fronteras</b><div class="meta">Diego Santos • New release</div></div></article><article class="card"><div class="thumb" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>New Day</b><div class="meta">Zuri • New release</div></div></article><article class="card"><div class="thumb" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Tokyo Lights</b><div class="meta">Kenji • New release</div></div></article><article class="card"><div class="thumb" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Éclat</b><div class="meta">Léa Moreau • New release</div></div></article><article class="card"><div class="thumb" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=700&q=80')"></div><div class="card-body"><b>Liberté</b><div class="meta">Daniel K. • New release</div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="discover" id="discover">
+  <div class="wrap discover-grid">
+    <div><h2 style="font-size:42px;margin:0">Discover Music Around the World</h2><div class="underline"></div><p class="lede" style="font-size:16px">Music has no borders. Explore artists and releases by country, genre, language, and region. From one corner of the world to another, discover new voices and new sounds.</p><div class="pills"><span class="pill">📍 Countries</span><span class="pill">♫ Genres</span><span class="pill">💬 Languages</span><span class="pill">🌐 Regions</span></div><a class="btn btn-gold" href="#artists">Explore the World →</a></div>
+    <div class="map" role="img" aria-label="Worldwide artist discovery map"></div>
+  </div>
+</section>
+
+<section id="submit">
+  <div class="wrap triple">
+    <article class="feature" id="join"><div class="eyebrow">For Artists</div><h3>Your music deserves a global platform.</h3><p>Create your artist profile, showcase your work, submit releases, manage your music information, and connect with future opportunities through Riscasan Records.</p><a class="btn btn-gold" href="#contact">Join Riscasan Records →</a></article>
+    <article class="feature"><div class="eyebrow">Submit Your Music</div><h3>Already creating?</h3><p>Submit your song, cover artwork, credits, collaborators, language, genre, country, and release information directly through the Riscasan Records platform.</p><a class="btn btn-dark" href="#contact">Submit a Release →</a></article>
+    <article class="feature" id="about"><div class="eyebrow">Built for Every Artist</div><h3>Your sound belongs somewhere.</h3><p>No matter where you are from, what language you speak, or what kind of music you create, Riscasan Records is building an ecosystem designed to give artists visibility, structure, resources, and room to grow.</p></article>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <div class="section-head"><div><h2>Artist Services</h2><div class="underline"></div></div><p>Support for every step of the journey.</p></div>
+    <div class="service-grid">
+      <div class="service"><div class="icon">👤</div><b>Artist Profiles</b></div><div class="service"><div class="icon">📊</div><b>Music Management</b></div><div class="service"><div class="icon">🤝</div><b>Collaborations</b></div><div class="service"><div class="icon">↗️</div><b>Artist Development</b></div><div class="service"><div class="icon">☁️</div><b>Distribution Services</b></div><div class="service"><div class="icon">🛡️</div><b>Rights & Metadata</b></div><div class="service"><div class="icon">📄</div><b>Publishing Support</b></div><div class="service"><div class="icon">📣</div><b>Promotional Opportunities</b></div><div class="service"><div class="icon">🌍</div><b>Global Discovery</b></div><div class="service"><div class="icon">🎵</div><b>Release Support</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="community" id="contact">
+  <div class="wrap"><h2>Join the Global Riscasan Records Community</h2><p>Artists. Producers. Songwriters. Musicians. Arrangers. Creators. One platform connecting talent across borders.</p><a class="btn btn-gold" href="mailto:Contact@riscasan.com">Create Artist Account →</a></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer">
+    <div><strong style="color:#fff">RISCASAN RECORDS</strong><br>One World. Every Sound.</div>
+    <div class="footer-links"><a href="#home">Home</a><a href="#artists">Artists</a><a href="#music">Music</a><a href="#discover">Discover</a><a href="#submit">Submit Music</a><a href="#join">Join</a></div>
+    <div>© 2026 Riscasan Records. A Riscasan company.</div>
+  </div>
+</footer>
+</body>
+</html>
