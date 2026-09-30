@@ -50,3 +50,8 @@ header b{font-size:15px;letter-spacing:-.01em}
   .assistantVisual img{width:min(84%,300px)}
   .visualBadge{right:8%;bottom:3%}
 }
+.toolPanel{max-width:760px;margin:8vh auto 0;padding:44px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(16,31,52,.92),rgba(8,20,36,.92));text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.26)}
+.toolIcon{width:74px;height:74px;margin:0 auto 18px;display:grid;place-items:center;border-radius:22px;border:1px solid rgba(83,167,255,.4);background:rgba(83,167,255,.08);font-size:30px;color:#cfe8ff}
+.toolPanel h2{margin:0 0 10px;font-size:34px;letter-spacing:-.035em}
+.toolPanel p{margin:0 auto 24px;max-width:560px;color:var(--muted);line-height:1.65}
+.toolPanel button{border:1px solid #355b82;background:#15365b;color:white;border-radius:12px;padding:11px 16px;cursor:pointer;font-weight:700}
