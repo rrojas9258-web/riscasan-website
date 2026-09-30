@@ -48,8 +48,16 @@ Do not claim actions you did not perform.`,
     });
 
     return NextResponse.json({ text: response.output_text });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    return NextResponse.json({ error: "AI request failed" }, { status: 500 });
+
+    if (error?.status === 429 || error?.code === "credit_balance_exhausted" || error?.type === "insufficient_quota") {
+      return NextResponse.json(
+        { error: "Ricardo AI is connected correctly, but API credits are currently unavailable." },
+        { status: 429 }
+      );
+    }
+
+    return NextResponse.json({ error: "Ricardo AI could not complete this request yet." }, { status: 500 });
   }
 }
