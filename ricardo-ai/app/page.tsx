@@ -14,6 +14,7 @@ const starters = [
 ];
 
 export default function Home() {
+  const [view,setView]=useState<"chats"|"projects"|"code"|"artifacts">("chats");
   const [messages,setMessages]=useState<Msg[]>([greeting]);
   const [input,setInput]=useState("");
   const [busy,setBusy]=useState(false);
@@ -33,6 +34,7 @@ export default function Home() {
   },[messages]);
 
   function newChat(){
+    setView("chats");
     setMessages([greeting]);
     setInput("");
     setAttachment(null);
@@ -105,16 +107,16 @@ export default function Home() {
       <div className="brand"><div className="mark">R</div><div><strong>Ricardo AI</strong><span>by Riscasan</span></div></div>
       <button className="new" onClick={newChat}>＋ New chat</button>
       <nav className="sideNav" aria-label="Ricardo AI">
-        <button className="sideNavItem active" onClick={newChat}>
+        <button className={"sideNavItem "+(view==="chats"?"active":"")} onClick={()=>setView("chats")}>
           <span className="navIcon">◯</span><span>Chats</span>
         </button>
-        <button className="sideNavItem">
+        <button className={"sideNavItem "+(view==="projects"?"active":"")} onClick={()=>setView("projects")}>
           <span className="navIcon">▰</span><span>Projects</span>
         </button>
-        <button className="sideNavItem">
+        <button className={"sideNavItem "+(view==="code"?"active":"")} onClick={()=>setView("code")}>
           <span className="navIcon">&lt;/&gt;</span><span>Code</span>
         </button>
-        <button className="sideNavItem">
+        <button className={"sideNavItem "+(view==="artifacts"?"active":"")} onClick={()=>setView("artifacts")}>
           <span className="navIcon">◫</span><span>Artifacts</span>
         </button>
       </nav>
@@ -125,7 +127,7 @@ export default function Home() {
       <header><div><b>Ricardo AI</b><span className="dot">●</span><small>Online</small></div><button className="ghost" onClick={newChat}>New</button></header>
 
       <div className="conversation">
-        {messages.length===1 && <section className="welcome">
+        {view==="chats" && messages.length===1 && <section className="welcome">
           <div className="welcomeGrid">
             <div className="welcomeCopy">
               <div className="eyebrow">RICARDO AI · BY RISCASAN</div>
@@ -143,25 +145,36 @@ export default function Home() {
             </div>
           </div>
         </section>}
-        <div className="messages">
+        {view==="chats" && <div className="messages">
           {messages.map((m,i)=><div key={i} className={"msgWrap "+m.role}>
             <div className={"msg "+m.role}>{m.text}</div>
             {m.role==="assistant"&&<button className="speak" onClick={()=>speak(m.text)} title="Read aloud">🔊</button>}
           </div>)}
           {busy&&<div className="msg assistant typing">Thinking…</div>}
-        </div>
+        </div>}
+
+        {view!=="chats" && <section className="toolPanel">
+          <div className="toolIcon">{view==="projects"?"▰":view==="code"?"</>":"◫"}</div>
+          <h2>{view==="projects"?"Projects":view==="code"?"Code":"Artifacts"}</h2>
+          <p>{view==="projects"
+            ?"Organize work, files, and long-running ideas here."
+            :view==="code"
+              ?"A dedicated workspace for coding help will live here."
+              :"Generated documents, images, and finished work will appear here."}</p>
+          <button onClick={()=>setView("chats")}>Back to chat</button>
+        </section>}
       </div>
 
-      {attachment&&<div className="attachmentChip">📎 {attachment.name}<button onClick={()=>setAttachment(null)}>×</button></div>}
+      {view==="chats" && attachment&&<div className="attachmentChip">📎 {attachment.name}<button onClick={()=>setAttachment(null)}>×</button></div>}
 
-      <form className="composer" onSubmit={send}>
+      {view==="chats" && <form className="composer" onSubmit={send}>
         <input ref={fileRef} className="hiddenFile" type="file" accept="image/*,.pdf,.txt,.md,.csv,.json" onChange={onFile}/>
         <button type="button" className="round" title="Attach image or document" onClick={()=>fileRef.current?.click()}>＋</button>
         <input value={input} onChange={e=>setInput(e.target.value)} placeholder="Message Ricardo AI…" />
         <button type="button" className={"round "+(listening?"activeMic":"")} title="Voice" onClick={startVoice}>{listening?"●":"🎙"}</button>
         <button className="send" disabled={busy}>↑</button>
-      </form>
-      <div className="note">Ricardo AI can make mistakes. Check important information.</div>
+      </form>}
+      {view==="chats" && <div className="note">Ricardo AI can make mistakes. Check important information.</div>}
     </section>
   </main>
 }
