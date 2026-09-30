@@ -135,12 +135,29 @@ export default function Home() {
     rec.start();
   }
 
-  function speak(text:string){
-    if(!("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-    const utter=new SpeechSynthesisUtterance(text);
-    utter.lang=navigator.language||"en-US";
-    window.speechSynthesis.speak(utter);
+  async function speak(text:string){
+    try{
+      const r=await fetch("/api/voice/speak",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({text})
+      });
+      if(!r.ok){
+        throw new Error("TTS request failed");
+      }
+      const blob=await r.blob();
+      const url=URL.createObjectURL(blob);
+      const audio=new Audio(url);
+      audio.onended=()=>URL.revokeObjectURL(url);
+      await audio.play();
+    }catch{
+      if("speechSynthesis" in window){
+        window.speechSynthesis.cancel();
+        const utter=new SpeechSynthesisUtterance(text);
+        utter.lang=navigator.language||"en-US";
+        window.speechSynthesis.speak(utter);
+      }
+    }
   }
 
   async function send(e?:FormEvent){
