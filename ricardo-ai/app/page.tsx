@@ -126,10 +126,22 @@ export default function Home() {
 
       <div className="conversation">
         {messages.length===1 && <section className="welcome">
-          <div className="orb">R</div>
-          <h1>How can I help?</h1>
-          <p>Work. Study. Business. Everyday life.<br/>One intelligent assistant, in your language.</p>
-          <div className="starters">{starters.map(s=><button key={s} onClick={()=>setInput(s)}>{s}</button>)}</div>
+          <div className="welcomeGrid">
+            <div className="welcomeCopy">
+              <div className="eyebrow">RICARDO AI · BY RISCASAN</div>
+              <h1>How can I help?</h1>
+              <p>Work. Study. Business. Everyday life.<br/>One intelligent assistant, in your language.</p>
+              <div className="languagePills">
+                <span>English</span><span>Español</span><span>Français</span><span>Kreyòl</span>
+              </div>
+              <div className="starters">{starters.map(s=><button key={s} onClick={()=>setInput(s)}>{s}</button>)}</div>
+            </div>
+            <div className="assistantVisual">
+              <div className="visualGlow"></div>
+              <img src="/ricardo-ai-man.svg" alt="Ricardo AI assistant" />
+              <div className="visualBadge"><span className="dot">●</span> Ready when you are</div>
+            </div>
+          </div>
         </section>}
         <div className="messages">
           {messages.map((m,i)=><div key={i} className={"msgWrap "+m.role}>
