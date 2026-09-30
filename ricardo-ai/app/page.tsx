@@ -20,12 +20,15 @@ export default function Home() {
   const [input,setInput]=useState("");
   const [busy,setBusy]=useState(false);
   const [listening,setListening]=useState(false);
+  const [voiceMode,setVoiceMode]=useState(false);
   const [attachment,setAttachment]=useState<File|null>(null);
   const [projects,setProjects]=useState<string[]>([]);
   const [projectName,setProjectName]=useState("");
   const [codeDraft,setCodeDraft]=useState("");
   const [artifacts,setArtifacts]=useState<Artifact[]>([]);
   const fileRef=useRef<HTMLInputElement>(null);
+  const recognitionRef=useRef<any>(null);
+  const voiceModeRef=useRef(false);
 
   useEffect(()=>{
     const saved=localStorage.getItem("ricardo-ai-history");
@@ -114,25 +117,60 @@ export default function Home() {
     setAttachment(f);
   }
 
-  function startVoice(){
+  function beginListening(){
     const w=window as any;
     const SpeechRecognition=w.SpeechRecognition||w.webkitSpeechRecognition;
     if(!SpeechRecognition){
       alert("Voice input is not supported in this browser yet.");
+      voiceModeRef.current=false;
+      setVoiceMode(false);
       return;
     }
+
+    if(recognitionRef.current) return;
+
     const rec=new SpeechRecognition();
+    recognitionRef.current=rec;
     rec.lang=navigator.language||"en-US";
     rec.interimResults=false;
     rec.continuous=false;
-    setListening(true);
+
+    rec.onstart=()=>setListening(true);
     rec.onresult=(event:any)=>{
       const text=event.results?.[0]?.[0]?.transcript||"";
-      setInput(text);
+      if(text) setInput(text);
     };
-    rec.onerror=()=>setListening(false);
-    rec.onend=()=>setListening(false);
-    rec.start();
+    rec.onerror=(event:any)=>{
+      if(event?.error==="not-allowed" || event?.error==="service-not-allowed"){
+        voiceModeRef.current=false;
+        setVoiceMode(false);
+      }
+      setListening(false);
+    };
+    rec.onend=()=>{
+      recognitionRef.current=null;
+      setListening(false);
+      if(voiceModeRef.current){
+        window.setTimeout(()=>beginListening(),300);
+      }
+    };
+
+    try{ rec.start(); }catch{}
+  }
+
+  function startVoice(){
+    if(voiceModeRef.current){
+      voiceModeRef.current=false;
+      setVoiceMode(false);
+      setListening(false);
+      try{ recognitionRef.current?.abort(); }catch{}
+      recognitionRef.current=null;
+      return;
+    }
+
+    voiceModeRef.current=true;
+    setVoiceMode(true);
+    beginListening();
   }
 
   async function speak(text:string){
@@ -275,15 +313,15 @@ export default function Home() {
       {view==="chats" && <form className="composer" onSubmit={send}>
         <input ref={fileRef} className="hiddenFile" type="file" accept="image/*,.pdf,.txt,.md,.csv,.json" onChange={onFile}/>
         <button type="button" className="round" title="Attach image or document" onClick={()=>fileRef.current?.click()}>＋</button>
-        <input value={input} onChange={e=>setInput(e.target.value)} placeholder={listening?"Listening… speak now":"Type or speak to Ricardo…"} />
+        <input value={input} onChange={e=>setInput(e.target.value)} placeholder={voiceMode?(listening?"Voice Mode — listening…":"Voice Mode on…"):"Type or speak to Ricardo…"} />
         <button
           type="button"
-          className={"round voiceMic "+(listening?"activeMic":"")}
-          title={listening?"Listening…":"Speak instead of typing"}
-          aria-label={listening?"Listening to your voice":"Speak instead of typing"}
-          aria-pressed={listening}
+          className={"round voiceMic "+(voiceMode?"activeMic":"")}
+          title={voiceMode?(listening?"Voice Mode on — listening":"Voice Mode on"):"Turn on Voice Mode"}
+          aria-label={voiceMode?"Turn off Voice Mode":"Turn on Voice Mode"}
+          aria-pressed={voiceMode}
           onClick={startVoice}
-        >{listening?"●":"🎙"}</button>
+        >{voiceMode?(listening?"●":"◉"):"🎙"}</button>
         <button className="send" disabled={busy}>↑</button>
       </form>}
       {view==="chats" && <div className="note">Riscasan AI can make mistakes. Check important information.</div>}
