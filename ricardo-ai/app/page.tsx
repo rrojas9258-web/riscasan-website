@@ -104,10 +104,20 @@ export default function Home() {
     <aside className="sidebar">
       <div className="brand"><div className="mark">R</div><div><strong>Ricardo AI</strong><span>by Riscasan</span></div></div>
       <button className="new" onClick={newChat}>＋ New chat</button>
-      <div className="sideLabel">LANGUAGES</div>
-      <div className="langs">English · Kreyòl · Français · Español</div>
-      <div className="sideLabel">V1 CAPABILITIES</div>
-      <div className="langs">Text · Voice input · Voice playback · Images & documents</div>
+      <nav className="sideNav" aria-label="Ricardo AI">
+        <button className="sideNavItem active" onClick={newChat}>
+          <span className="navIcon">◯</span><span>Chats</span>
+        </button>
+        <button className="sideNavItem">
+          <span className="navIcon">▰</span><span>Projects</span>
+        </button>
+        <button className="sideNavItem">
+          <span className="navIcon">&lt;/&gt;</span><span>Code</span>
+        </button>
+        <button className="sideNavItem">
+          <span className="navIcon">◫</span><span>Artifacts</span>
+        </button>
+      </nav>
       <div className="sideBottom">Private by design · V1</div>
     </aside>
 
