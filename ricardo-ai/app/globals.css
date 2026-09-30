@@ -55,3 +55,37 @@ header b{font-size:15px;letter-spacing:-.01em}
 .toolPanel h2{margin:0 0 10px;font-size:34px;letter-spacing:-.035em}
 .toolPanel p{margin:0 auto 24px;max-width:560px;color:var(--muted);line-height:1.65}
 .toolPanel button{border:1px solid #355b82;background:#15365b;color:white;border-radius:12px;padding:11px 16px;cursor:pointer;font-weight:700}
+
+.workspacePanel{max-width:960px;margin:5vh auto 0;padding:34px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(16,31,52,.94),rgba(8,20,36,.94));box-shadow:0 24px 70px rgba(0,0,0,.26)}
+.workspaceHead{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;margin-bottom:24px}
+.workspaceKicker{display:block;color:#74b8f3;font-size:11px;font-weight:800;letter-spacing:.13em;margin-bottom:7px}
+.workspaceHead h2{font-size:34px;letter-spacing:-.04em;margin:0 0 8px}
+.workspaceHead p{margin:0;color:var(--muted);line-height:1.6}
+.projectCreate{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:20px}
+.projectCreate input{border:1px solid #294463;background:#0b1728;color:white;border-radius:12px;padding:13px 14px;outline:none}
+.projectCreate input:focus{border-color:#4d8fca}
+.projectCreate button,.primaryAction,.cardActions button{border:1px solid #3a6c9b;background:#17406d;color:white;border-radius:11px;padding:10px 14px;cursor:pointer;font-weight:700}
+.projectGrid{display:grid;gap:12px}
+.projectCard,.artifactCard{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:16px;padding:16px}
+.projectCard{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.projectCard strong,.artifactMeta strong{display:block;font-size:16px}
+.projectCard span,.artifactMeta span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.cardActions{display:flex;gap:8px;flex-wrap:wrap}
+.cardActions .dangerGhost,.dangerGhost{background:transparent;border-color:#4a3341;color:#d8a7b7}
+.codeEditor{width:100%;min-height:360px;resize:vertical;border:1px solid #294463;background:#06101d;color:#d8ecff;border-radius:16px;padding:16px;outline:none;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.55}
+.codeEditor:focus{border-color:#4d8fca}
+.workspaceActions{display:flex;gap:10px;margin-top:14px}
+.secondaryAction{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:11px;padding:10px 14px;cursor:pointer;font-weight:700}
+.primaryAction:disabled{opacity:.45;cursor:not-allowed}
+.artifactList{display:grid;gap:14px}
+.artifactCard p{white-space:pre-wrap;color:#dbeaff;line-height:1.6;max-height:260px;overflow:auto}
+.artifactMeta{margin-bottom:10px}
+.emptyState{padding:30px;border:1px dashed #315172;border-radius:16px;text-align:center;color:var(--muted);background:rgba(83,167,255,.025)}
+@media(max-width:760px){
+  .workspacePanel{margin:1vh auto 0;padding:20px 14px}
+  .workspaceHead{flex-direction:column}
+  .projectCreate{grid-template-columns:1fr}
+  .projectCard{align-items:flex-start;flex-direction:column}
+  .workspaceActions{flex-direction:column}
+  .workspaceActions button,.primaryAction{width:100%}
+}
