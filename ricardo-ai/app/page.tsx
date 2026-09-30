@@ -258,8 +258,15 @@ export default function Home() {
       {view==="chats" && <form className="composer" onSubmit={send}>
         <input ref={fileRef} className="hiddenFile" type="file" accept="image/*,.pdf,.txt,.md,.csv,.json" onChange={onFile}/>
         <button type="button" className="round" title="Attach image or document" onClick={()=>fileRef.current?.click()}>＋</button>
-        <input value={input} onChange={e=>setInput(e.target.value)} placeholder="Ask Ricardo anything…" />
-        <button type="button" className={"round "+(listening?"activeMic":"")} title="Voice" onClick={startVoice}>{listening?"●":"🎙"}</button>
+        <input value={input} onChange={e=>setInput(e.target.value)} placeholder={listening?"Listening… speak now":"Type or speak to Ricardo…"} />
+        <button
+          type="button"
+          className={"round voiceMic "+(listening?"activeMic":"")}
+          title={listening?"Listening…":"Speak instead of typing"}
+          aria-label={listening?"Listening to your voice":"Speak instead of typing"}
+          aria-pressed={listening}
+          onClick={startVoice}
+        >{listening?"●":"🎙"}</button>
         <button className="send" disabled={busy}>↑</button>
       </form>}
       {view==="chats" && <div className="note">Riscasan AI can make mistakes. Check important information.</div>}
