@@ -1,0 +1,42 @@
+<svg width="560" height="680" viewBox="0 0 560 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="60" y1="30" x2="500" y2="640" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#0B2D55"/>
+    <stop offset="1" stop-color="#07111F"/>
+  </linearGradient>
+  <linearGradient id="suit" x1="180" y1="350" x2="400" y2="650" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#123D73"/>
+    <stop offset="1" stop-color="#08182C"/>
+  </linearGradient>
+  <linearGradient id="skin" x1="250" y1="150" x2="320" y2="360" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#E8B08B"/>
+    <stop offset="1" stop-color="#B96F4F"/>
+  </linearGradient>
+  <radialGradient id="glow">
+    <stop stop-color="#53A7FF" stop-opacity=".45"/>
+    <stop offset="1" stop-color="#53A7FF" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="560" height="680" rx="40" fill="url(#bg)"/>
+<circle cx="420" cy="130" r="120" fill="url(#glow)"/>
+<circle cx="120" cy="570" r="150" fill="url(#glow)"/>
+<path d="M165 680C174 517 208 425 280 401C352 425 386 517 395 680H165Z" fill="url(#suit)"/>
+<path d="M240 412L280 455L320 412L344 680H216L240 412Z" fill="#F5F8FC"/>
+<path d="M243 413L280 455L317 413L302 386H258L243 413Z" fill="#D7E6F6"/>
+<ellipse cx="280" cy="270" rx="96" ry="122" fill="url(#skin)"/>
+<path d="M194 250C190 154 231 111 285 111C352 111 382 159 371 246C344 217 317 194 277 195C243 196 218 217 194 250Z" fill="#1A171C"/>
+<path d="M207 181C222 126 267 99 320 114C354 124 376 150 382 187C355 166 325 156 293 159C256 163 230 173 207 181Z" fill="#251F28"/>
+<path d="M214 277C227 353 259 384 280 384C302 384 336 351 347 278C336 299 326 315 314 326C296 342 266 342 247 326C234 315 224 298 214 277Z" fill="#7E3F34" fill-opacity=".38"/>
+<ellipse cx="245" cy="266" rx="8" ry="6" fill="#221B1B"/>
+<ellipse cx="316" cy="266" rx="8" ry="6" fill="#221B1B"/>
+<path d="M257 312C270 321 289 321 303 312" stroke="#6B342C" stroke-width="5" stroke-linecap="round"/>
+<path d="M227 239C239 232 251 231 262 235" stroke="#2A2020" stroke-width="6" stroke-linecap="round"/>
+<path d="M299 235C311 231 324 232 335 239" stroke="#2A2020" stroke-width="6" stroke-linecap="round"/>
+<path d="M244 341C267 353 293 353 317 341" stroke="#2B1B1B" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+<path d="M177 438C127 469 96 531 90 680H206L229 430C210 428 194 431 177 438Z" fill="#0A203C"/>
+<path d="M383 438C433 469 464 531 470 680H354L331 430C350 428 366 431 383 438Z" fill="#0A203C"/>
+<rect x="34" y="34" width="124" height="44" rx="14" fill="#0F4D88" stroke="#6DBEFF" stroke-opacity=".7"/>
+<text x="53" y="63" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Ricardo AI</text>
+<circle cx="454" cy="545" r="46" fill="#0E315C" stroke="#53A7FF"/>
+<path d="M432 545H476M454 523V567" stroke="#B9DCFF" stroke-width="6" stroke-linecap="round"/>
+</svg>
